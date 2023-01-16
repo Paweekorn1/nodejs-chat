@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en>">
+
+<head>
+    <title>NodeJs Chat Message</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color:darkseagreen;
+        }
+
+        .txt-center {
+            text-align: center;
+            font-family:Verdana, Geneva, Tahoma, sans-serif;
+            font-size: 50px;
+
+        }
+        .txt-center [type=submit] {
+            background-color: #20bd1d;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            margin: 4px 2px;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+        .txt-center #input{
+            font-size: 20px;
+        }
+
+        h1 {
+            color:white;
+        }
+        .Message{
+            text-align: center;
+            font-size: 18px;
+            color:teal;
+            font-style:oblique;
+            font-family:Verdana, Geneva, Tahoma, sans-serif;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="container ">
+        <h1 class="txt-center">NodeJs Message</h1>
+        <form id="form">
+            <div class="txt-center">
+                <input id="input" />
+
+                <button onclick="" type="submit">Send </button>
+            </div>
+        </form>
+        <div class="row">
+            <div class="Message">
+                <div id="comment">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src=/socket.io/socket.io.js></script>
+    <script>
+        var socket = io();
+
+        var form = document.getElementById("form");
+        var input = document.getElementById("input");
+        var comment = document.getElementById("comment");
+
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            if (input.value) {
+                socket.emit('node chat', input.value);
+                input.value = '';
+            }
+        })
+        socket.on('node chat', function (msg) {
+            var txt = document.createElement('p');
+            txt.textContent = "Chat : " + msg;
+            comment.appendChild(txt);
+        })
+    </script>
+
+</body>
+
+</html>
