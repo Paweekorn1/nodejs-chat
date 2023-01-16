@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en>">
 
@@ -89,4 +90,97 @@
 
 </body>
 
+=======
+<!DOCTYPE html>
+<html lang="en>">
+
+<head>
+    <title>NodeJs Chat</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color:whitesmoke;
+        }
+
+        .txt-center {
+            text-align: center;
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 50px;
+
+        }
+        .txt-center [type=submit] {
+            background-color: #04AA6D;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            margin: 4px 2px;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 8px;
+        }
+        .txt-center #input{
+            font-size: 20px;
+        }
+
+        h1 {
+            color: cornflowerblue;
+        }
+        .Message{
+            text-align: right;
+            margin-right: 40%;
+            margin-left: 20%;
+            font-size: 25px;
+            color: darkslateblue;
+            font-style: italic;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="container ">
+        <h1 class="txt-center">NodeJs Chat</h1>
+        <form id="form">
+            <div class="txt-center">
+                <input id="input" />
+
+                <button onclick="" type="submit">Send </button>
+            </div>
+        </form>
+        <div class="row">
+            <div class="Message">
+                <div id="comment">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src=/socket.io/socket.io.js></script>
+    <script>
+        var socket = io();
+
+        var form = document.getElementById("form");
+        var input = document.getElementById("input");
+        var comment = document.getElementById("comment");
+
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            if (input.value) {
+                socket.emit('chat message', input.value);
+                input.value = '';
+            }
+        })
+        socket.on('chat message', function (msg) {
+            var txt = document.createElement('p');
+            txt.textContent = msg + " : Message";
+            comment.appendChild(txt);
+        })
+    </script>
+
+</body>
+
+>>>>>>> 14376e84a78984b99086ca437a7e78a3cf25c944
 </html>
